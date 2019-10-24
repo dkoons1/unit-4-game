@@ -1,0 +1,31 @@
+#red{
+    background: crimson;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+
+#blue{
+    background: skyblue;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+
+#green{
+    background: palegreen;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+
+#yellow{
+    background: palegoldenrod;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+
+#wrapper{
+    margin-top: 200px;
+}
