@@ -1,63 +1,93 @@
 $(document).ready(function() {
 
-    var number = 0;
+    
     var x = $("#number");
     var y = $("#guessed");
+
+    var number = Math.floor(Math.random() * (120 - 19) + 19);
     var counter = 0;
+
+    var red = Math.floor(Math.random() * 11) + 1;
+    var blue = Math.floor(Math.random() * 11) + 1;
+    var green = Math.floor(Math.random() * 11) + 1;
+    var yellow = Math.floor(Math.random() * 11) + 1;
 
 
     x.text(number);
     y.text(counter);
 
-    function start(){
-        number = Math.floor(Math.random() * (120 - 19) + 19);
+        // number = Math.floor(Math.random() * (120 - 19) + 19);
+        // x.val(number)
+        // y.val(counter)
+        // console.log(x.val())
+
+
+function restart()
+{
+        console.log(y.val())
+        var number = Math.floor(Math.random() * (120 - 19) + 19);
+        var red = Math.floor(Math.random() * 11) + 1;
+        var blue = Math.floor(Math.random() * 11) + 1;
+        var green = Math.floor(Math.random() * 11) + 1;
+        var yellow = Math.floor(Math.random() * 11) + 1;
+
+        counter = 0;
+        y.val(0)
         x.val(number)
-        y.val(counter)
-        console.log(x.val())
+}
+
+function winGame(){
+    alert("U win")
+    restart()
+}
+
+function loseGame(){
+    alert("u lose")
+    restart()
+}
+
+        
 
         $("#red").on("click", function() {
             if(counter != number){
-                counter += 6;
-                y.text(counter)
-                console.log(y.val())
-                return counter;
+                counter += red;
+                y.text(counter);
+            }
+            else if(counter > number){
+                loseGame()
+            }
+            else{
+                winGame()
+            }
+        });
+
+        $("#blue").on("click", function() {
+            if(counter != number){
+                counter += blue;
+                y.text(counter);
             }
             else{
                 restart()
             }
-
-        });
-        $("#blue").on("click", function() {
-            counter += 3;
-            y.text(counter);
         });
     
         $("#green").on("click", function() {
-            counter += 1;
-            y.text(counter);
-
+            if(counter != number){
+                counter += green;
+                y.text(counter);
+            }
+            else{
+                restart()
+            }
         });
     
         $("#yellow").on("click", function() {
-            counter += 9;
-            y.text(counter);
+            if(counter != number){
+                counter += yellow;
+                y.text(counter);
+            }
+            else{
+                restart()
+            }
         });
-
-}
-
-start()
-
-    function restart(){
-        console.log(y.val())
-        number = Math.floor(Math.random() * (120 - 19) + 19);
-        counter = 0;
-        y.val(0)
-        x.val(number)
-    }
-
-
-
-            
-
-
   });
