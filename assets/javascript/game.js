@@ -42,14 +42,14 @@ function restart()
 }
 
 function winGame(){
-    alert("U win")
+    alert("Hooray! You guessed the number right!")
     wins++
     z.text(wins)
     
 }
 
 function loseGame(){
-    alert("u lose")
+    alert("Oh no! You went over the number!")
     losses++
     a.text(losses)
 }
