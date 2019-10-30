@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-    
     var x = $("#number");
     var y = $("#guessed");
     var z = $("#wins")
@@ -9,10 +8,12 @@ $(document).ready(function() {
     var number = Math.floor(Math.random() * (120 - 19) + 19);
     var counter = 0;
 
-    var red = Math.floor(Math.random() * 11) + 1;
-    var blue = Math.floor(Math.random() * 11) + 1;
-    var green = Math.floor(Math.random() * 11) + 1;
-    var yellow = Math.floor(Math.random() * 11) + 1;
+    var gems = {
+        red: getRandomNumber(),
+        blue: getRandomNumber(),
+        green: getRandomNumber(),
+        yellow: getRandomNumber()
+    }
     var wins = 0;
     var losses = 0;
 
@@ -26,15 +27,17 @@ $(document).ready(function() {
         // y.val(counter)
         // console.log(x.val())
 
+function getRandomNumber() {
+    return Math.floor(Math.random() * 11) + 1;
+}
 
-function restart()
+function startGame()
 {
          console.log(y.val())
          number = Math.floor(Math.random() * (120 - 19) + 19);
-         red = Math.floor(Math.random() * 11) + 1;
-         blue = Math.floor(Math.random() * 11) + 1;
-         green = Math.floor(Math.random() * 11) + 1;
-         yellow = Math.floor(Math.random() * 11) + 1;
+         for (var g in gems) {
+             gems[g] = getRandomNumber()
+         }
 
         counter = 0;
         x.text(number);
@@ -54,64 +57,18 @@ function loseGame(){
     a.text(losses)
 }
 
-        $("#red").on("click", function() {
+        $("#wrapper img").on("click", function(e) {
             if(counter != number){
-                counter += red;
+                counter += gems[e.target.id];
                 y.text(counter);
                 if(counter > number){
                     loseGame()
-                    restart()
+                    startGame()
                 }
                 else if (counter == number){
                     winGame()
-                    restart()
-                }   
-            }
-
-        });
-
-        $("#blue").on("click", function() {
-            if(counter != number){
-                counter += blue;
-                y.text(counter);
-                if(counter > number){
-                    loseGame()
-                    restart()
+                    startGame()
                 }
-                else if (counter == number){
-                    winGame()
-                    restart()
-                }   
             }
-        });
-    
-        $("#green").on("click", function() {
-            if(counter != number){
-                counter += green;
-                y.text(counter);
-                if(counter > number){
-                    loseGame()
-                    restart()
-                }
-                else if (counter == number){
-                    winGame()
-                    restart()
-                }   
-            }
-        });
-    
-        $("#yellow").on("click", function() {
-            if(counter != number){
-                counter += yellow;
-                y.text(counter);
-                if(counter > number){
-                    loseGame()
-                    restart()
-                }
-                else if (counter == number){
-                    winGame()
-                    restart()
-                }   
-            }
-        });
+        })
   });
